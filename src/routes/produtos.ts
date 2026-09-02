@@ -6,7 +6,8 @@ type Produto = {
     nome: string,
     valor: number,
     custo: number,
-    obs?: string
+    obs?: string,
+    descricao?: string
 }
 
 export async function produtosRoute(app: FastifyInstance) {
@@ -30,7 +31,7 @@ export async function produtosRoute(app: FastifyInstance) {
     app.post('/',
         { onRequest: [app.authenticate], },
         async (request, reply) => {
-            const { nome, valor, custo, obs } = request.body as Produto
+            const { nome, valor, custo, obs, descricao } = request.body as Produto
 
             if (!nome || !valor || !custo) {
                 return reply.status(400).send({ error: 'Todos os dados são obrigatórios!!' })
@@ -42,7 +43,8 @@ export async function produtosRoute(app: FastifyInstance) {
                         nome: nome,
                         preco_venda: valor,
                         preco_custo: custo,
-                        obs: obs
+                        obs: obs,
+                        descricao: descricao
                     }
                 })
 
@@ -58,7 +60,7 @@ export async function produtosRoute(app: FastifyInstance) {
         { onRequest: [app.authenticate] },
         async (request, reply) => {
 
-            const { id, nome, valor, custo, obs } = request.body as Produto
+            const { id, nome, valor, custo, obs, descricao } = request.body as Produto
 
             try {
                 if (!id || !nome || !custo || !valor) {
@@ -71,7 +73,8 @@ export async function produtosRoute(app: FastifyInstance) {
                         nome: nome,
                         preco_custo: custo,
                         preco_venda: valor,
-                        obs: obs ?? null
+                        obs: obs ?? null,
+                        descricao: descricao ?? null
                     }
                 })
 

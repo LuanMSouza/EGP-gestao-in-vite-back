@@ -20,6 +20,7 @@ model produtos {
   id          Int           @id @default(autoincrement())
   nome        String        @db.VarChar(255)
   obs         String?       @db.VarChar(255)
+  descricao   String?       @db.VarChar(1000)
   preco_venda Decimal       @db.Decimal(10, 2)
   preco_custo Decimal       @db.Decimal(10, 2)
   imagens     imagens[]

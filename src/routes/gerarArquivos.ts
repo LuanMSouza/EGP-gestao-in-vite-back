@@ -3,7 +3,8 @@ import { prisma } from '../../lib/prisma'
 import { gerarImagemDocumento } from '../lib/gerarImagens'
 
 type ItemOrcamento = { // Use nomes no singular para tipos de item único
-    id: number
+    id?: number
+    nome?: string
     quantidade: number
     valor_unitario: number
 }
